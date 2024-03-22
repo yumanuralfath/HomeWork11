@@ -1,8 +1,6 @@
 import { generateToken } from '../lib/jwt.js'
 import { comparePassword } from '../lib/bcrypt.js'
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '../config/database.js'
 
 // login
 export const login = async (req, res, next) => {
@@ -15,7 +13,7 @@ export const login = async (req, res, next) => {
     });
     if (!user) return res.status(404).json({ msg: 'User not found' });
 
-    const match = await comparePassword(password, user.password);
+    const match = comparePassword(password, user.password);
     if (!match) return res.status(400).json({ msg: 'Wrong password' });
 
     const payload = {
@@ -26,9 +24,6 @@ export const login = async (req, res, next) => {
     const token = generateToken(payload);
 
     console.log(token);
-
-    // Simpan token di sesi
-    // Sesuaikan dengan metode yang Anda gunakan untuk manajemen sesi
     req.session.token = token;
     req.session.userID = user.id;
 
@@ -46,7 +41,7 @@ export const me = async (req, res, next) => {
     }
     const user = await prisma.user.findUnique({
       where: {
-        id: req.session.userID
+        id: req.session.userID,
       },
       select: {
         id: true,

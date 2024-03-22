@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../config/database.js'
 import { hashPassword } from '../lib/bcrypt.js';
-
-const prisma = new PrismaClient();
 
 class UserController {
   // Create a new user
