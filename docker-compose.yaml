@@ -1,34 +1,17 @@
-version: "3"
-
-networks:
-  app-tier:
-    driver: bridge
+version: "3.9"
 
 services:
-  postgres:
-    image: postgres:16.2-alpine3.19
-    networks:
-      - app-tier
-    restart: always
-    env_file:
-      - ./.env
+  db:
+    image: "postgres"
+    ports:
+      - "2345:5432"
     environment:
-      - PGPORT=5439
-    ports:
-      - 5439:5439
-    volumes:
-      - pg_data:/var/lib/postgresql/data
-
-  app:
-    depends_on:
-      - postgres
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "mydb"
+  server:
     build: .
-    networks:
-      - app-tier
-    restart: always
-    env_file: ./.env
     ports:
-      - 8080:8080
-
-volumes:
-  pg_data:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/mydb?schema=public"
