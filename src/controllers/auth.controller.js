@@ -23,12 +23,12 @@ export const login = async (req, res, next) => {
 
     const token = generateToken(payload);
 
-    console.log(token);
     req.session.token = token;
     req.session.userID = user.id;
 
     res.status(200).json({ id: user.id, email: user.email, token });
   } catch (error) {
+    console.loh(body);
     next(error);
   }
 }

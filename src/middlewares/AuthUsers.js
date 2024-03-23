@@ -14,14 +14,12 @@ export const verifyUser = async (req, res, next) => {
       select: { // Memilih atribut yang ingin Anda kembalikan
         id: true,
         email: true,
-        gender: true,
-        role: true
       }
     });
     if (!user) {
       return res.status(404).json({ msg: 'User Not Found, Please Login Again' });
     }
-    req.user = user; 
+    req.user = user;
     next();
   } catch (error) {
     console.error(error);

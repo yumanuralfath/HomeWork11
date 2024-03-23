@@ -1,0 +1,287 @@
+{
+    "info": {
+        "_postman_id": "b2d6dbe5-8b06-42e8-9de8-29e129447916",
+        "name": "Rakamin",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{base_url}}/api/users/login",
+                            "path": [
+                                "api",
+                                "users",
+                                "login"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"email\": \"alfath@gmail.com\",\n  \"password\":\"yuma\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Me",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/users/me",
+                            "path": [
+                                "api",
+                                "users",
+                                "me"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "LogOut",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{base_url}}/api/users/logout",
+                            "path": [
+                                "api",
+                                "users",
+                                "logout"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "item": [
+                {
+                    "name": "Get all users",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/users/",
+                            "path": [
+                                "api",
+                                "users"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get User By Id",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/users/{{id}}",
+                            "path": [
+                                "api",
+                                "users",
+                                "{{id}}"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Register User",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{base_url}}/api/users/",
+                            "path": [
+                                "api",
+                                "users"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"email\" : \"alfath@gmail.com\",\n  \"Password\": \"yuma\",\n  \"confirmPassword\": \"yuma\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Update user",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{base_url}}/api/users/{{id}}",
+                            "path": [
+                                "api",
+                                "users",
+                                "{{id}}"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"email\": \"alfath@gmail.com\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Destroy User",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{base_url}}/api/users/1",
+                            "path": [
+                                "api",
+                                "users",
+                                "1"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "TaskList",
+            "item": [
+                {
+                    "name": "Creat Task",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{base_url}}/api/tasklists/",
+                            "path": [
+                                "api",
+                                "tasklists"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"title\": \"test\",\n  \"content\": \"quxniyerequc r77qwexcbn rewqi rxcwiurnxbcwq xrcwq qsdqasdsw xcywegiewy\",\n  \"Completed\": true\n}\n"
+                        }
+                    }
+                },
+                {
+                    "name": "Get all task",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/tasklists/",
+                            "path": [
+                                "api",
+                                "tasklists"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "find todollist",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/tasklists/5",
+                            "path": [
+                                "api",
+                                "tasklists",
+                                "5"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "update list",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{base_url}}/api/tasklists/2",
+                            "path": [
+                                "api",
+                                "tasklists",
+                                "2"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"title\": \"test\",\n  \"content\": \"quxniyerequc r77qwexcbn rewqi rxcwiurnxbcwq xrcwq qw xcywegiewy\",\n  \"Completed\": false\n}\n"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Todo list",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{base_url}}/api/tasklists/5",
+                            "path": [
+                                "api",
+                                "tasklists",
+                                "5"
+                            ],
+                            "host": [
+                                "{{base_url}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

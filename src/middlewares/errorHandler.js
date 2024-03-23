@@ -15,6 +15,8 @@ const errorHandler = (err, req, res, next) => {
     res.status(400).json({ message: 'Password and confirmPassword are not Valid' })
   } else if (err.message === 'Invalid email format') {
     res.status(400).json({ message: 'Invalid email format' })
+  } else if (err.name === 'PrismaClientKnownRequestError') {
+    res.status(400).json({ message: 'email already use' })
   } else {
     res.status(500).json({ message: 'Internals Server Error' })
   }

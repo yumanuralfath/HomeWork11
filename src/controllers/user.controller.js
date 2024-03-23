@@ -29,7 +29,6 @@ class UserController {
           password: hashPass, // Use hashed password
         },
       });
-
       res.status(200).json({ msg: 'Created Account Successfully' })
     } catch (error) {
       next(error); // Call next to handle the error
@@ -41,7 +40,8 @@ class UserController {
   static findAll = async (req, res, next) => {
     try {
       const users = await prisma.user.findMany();
-      res.json(users);
+      const usersDisplay = users.map(user => ({ id: user.id, email: user.email }));  //just id and email displayed
+      res.status(200).json(usersDisplay);
     } catch (error) {
       next();
     }
@@ -57,22 +57,27 @@ class UserController {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-      res.json(user);
+      // Filter hanya id dan email
+      const filteredUser = { id: user.id, email: user.email };
+      console.log(filteredUser);
+      res.json(filteredUser);
     } catch (error) {
-      next();
+      next(error);
     }
   };
+
 
   // Update a user by ID
   static update = async (req, res, next) => {
     try {
       const userId = parseInt(req.params.id);
-      const { name, email } = req.body;
+      const { email } = req.body;
       const updatedUser = await prisma.user.update({
         where: { id: userId },
-        data: { name, email },
+        data: { email },
       });
-      res.json(updatedUser);
+      const updatedUserId = { id: userId, email: updatedUser.email };
+      res.json(updatedUserId);
     } catch (error) {
       next();
     }
@@ -85,9 +90,9 @@ class UserController {
       await prisma.user.delete({
         where: { id: userId },
       });
-      res.status(204).send();
+      res.json("User " + userId + " deleted");
     } catch (error) {
-      next();
+      next(error);
     }
   };
 }
